@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
 }
@@ -94,15 +95,15 @@ body {
   align-items: center;
 }
 
-.font-size_small {
+.font-size_small, .font-size_small_active {
   font-size: 12px;
 }
 
-.font-size_big {
+.font-size_big, .font-size_big_active {
   font-size: 20px;
 }
 
-.font-size_active {
+.font-size_active, .font-size_small_active, .font-size_big_active {
   border: 1px solid whitesmoke;
   border-radius: 50%;
 }
