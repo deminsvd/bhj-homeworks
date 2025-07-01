@@ -14,11 +14,12 @@ function isVisible(el) {
 }
 
 for (let block of blocks) {
-    setInterval(() => {
+    window.addEventListener("scroll", function (e) {
         if (isVisible(block)) {
             block.className = 'reveal reveal_active'
         } else {
             block.className = 'reveal'
         }
-    }, 1000)
+    })
+
 }
