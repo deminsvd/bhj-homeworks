@@ -1,71 +1,37 @@
-(() => {
-  let playing = true,
-    activeHole = 1;
 
-  const stop = () => playing = true,
-    getHole = index => document.getElementById(`hole${index}`),
-    deactivateHole = index =>
-      getHole( index ).className = 'hole',
-    activateHole = index =>
-      getHole( index ).className = 'hole hole_has-mole',
-    next = () => setTimeout(() => {
-      if ( !playing ) {
-        return;
-      }
-      deactivateHole( activeHole );
-      activeHole = Math.floor( 1 + Math.random() * 9 );
-      activateHole( activeHole );
-      next();
-    }, 800 );
+const counterDead = document.getElementById('dead')
+const counterLost = document.getElementById('lost')
 
-  next();
-})();
+for (let index = 1; index <= 9; index++) {
+  const hole = getHole(index)
+  ishole(hole)
+}
 
-const p1 = document.getElementById('dead')
-const p2 = document.getElementById('lost')
-
-const hole1 = document.getElementById('hole1')
-ishole(hole1)
-
-const hole2 = document.getElementById('hole2')
-ishole(hole2)
-
-const hole3 = document.getElementById('hole3')
-ishole(hole3)
-
-const hole4 = document.getElementById('hole4')
-ishole(hole4)
-
-const hole5 = document.getElementById('hole5')
-ishole(hole5)
-
-const hole6 = document.getElementById('hole6')
-ishole(hole6)
-
-const hole7 = document.getElementById('hole7')
-ishole(hole7)
-
-const hole8 = document.getElementById('hole8')
-ishole(hole8)
-
-const hole9 = document.getElementById('hole9')
-ishole(hole9)
+function getHole(index) {
+  let holeName = 'hole' + index
+  const hole = document.getElementById(holeName)
+  return hole
+}
 
 function ishole(hole) {
     hole.onclick = () => {
         if (hole.className.includes('hole_has-mole')) {
-            p1.textContent = Number(p1.textContent) + 1
+            counterDead.textContent = Number(counterDead.textContent) + 1
         } else {
-            p2.textContent = Number(p2.textContent) + 1
+            counterLost.textContent = Number(counterLost.textContent) + 1
         }
         
 
-        if (p1.textContent == 10) {
+        if (counterDead.textContent == 10) {
             alert('Победа!')
+            counterDead.textContent = 0
+            counterLost.textContent = 0
         }
 
-        if (p2.textContent ==5) {
+        if (counterLost.textContent ==5) {
             alert('Вы проиграли!')
+            counterDead.textContent = 0
+            counterLost.textContent = 0
         }
 
     }
